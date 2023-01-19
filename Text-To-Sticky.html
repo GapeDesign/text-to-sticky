@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+ <textarea id="textArea"></textarea>
+    <br>
+    <button onclick="copyToClipboard()">Copiar para a área de transferência</button>
+
+    <script>
+        function copyToClipboard() {
+
+            var text = document.getElementById("textArea").value;
+
+            var lines = text.split("\n");
+
+            var stringToCopy = lines.join("\t");
+
+            var input = document.createElement("textarea");
+            input.style.position = "fixed";
+            input.style.opacity = 0;
+            input.value = stringToCopy;
+            document.body.appendChild(input);
+            input.select();
+
+            document.execCommand("copy");
+            document.body.removeChild(input);
+            alert("Texto copiado com sucesso!");
+
+            document.getElementById("textArea").value = "";
+        }
+    </script>
+
+</body>
+
+</html>
